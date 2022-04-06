@@ -13,9 +13,11 @@ public class Demo3Test extends FlipkartWebBase {
 
     @Test
     public void testDemo3A() {
-        driver = super.driver;
+        //        driver = super.driver;
+        this.driver=getDriver();
         String text = new HomePageUI(driver).sendInputData().clickTermsOfUse().clickPrivacy().getHeaderText();
         System.out.println(text);
+
         driver.navigate().back();
         new TermsOfUsePageUI(driver).doubleClickTermsofUseHeader();
         driver.navigate().back();
@@ -27,9 +29,11 @@ public class Demo3Test extends FlipkartWebBase {
     @AzamaraBro
     @Test
     public void testDemo3B() {
-        driver = super.driver;
+//        driver = super.driver;
+        this.driver=getDriver();
         String text = new HomePageUI(driver).sendInputData().clickTermsOfUse().clickPrivacy().getHeaderText();
         System.out.println(text);
+
         driver.navigate().back();
         new TermsOfUsePageUI(driver).doubleClickTermsofUseHeader();
         driver.navigate().back();

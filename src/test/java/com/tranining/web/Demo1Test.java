@@ -11,7 +11,8 @@ public class Demo1Test extends FlipkartWebBase {
 
     @Test
     public void testDemo1A() {
-        driver = super.driver;
+//        driver = super.driver;
+        this.driver=getDriver();
         String text = new HomePageUI(driver).sendInputData().clickTermsOfUse().clickPrivacy().getHeaderText();
         System.out.println(text);
 
@@ -24,9 +25,11 @@ public class Demo1Test extends FlipkartWebBase {
 
     @Test
     public void testDemo1B() {
-        driver = super.driver;
+//        driver = super.driver;
+        this.driver=getDriver();
         String text = new HomePageUI(driver).sendInputData().clickTermsOfUse().clickPrivacy().getHeaderText();
         System.out.println(text);
+
         driver.navigate().back();
         new TermsOfUsePageUI(driver).doubleClickTermsofUseHeader();
         driver.navigate().back();
