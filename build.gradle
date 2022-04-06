@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.rest-assured:rest-assured:4.5.1'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.1'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.1.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task AzamaraBro(type: Test, description: 'Run Royal Smoke tests...') {
+    useJUnitPlatform() { includeTags 'azamarabro' }
+}
+
+tasks.withType(Test) {
+    doFirst{
+        systemProperties System.getProperties()
+        //https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-parallel-execution
+        systemProperties['junit.jupiter.execution.parallel.enabled'] = true
+        systemProperties['junit.jupiter.execution.parallel.mode.default'] = "same_thread"
+        systemProperties['junit.jupiter.execution.parallel.mode.classes.default'] = "concurrent"
+        systemProperties['junit.jupiter.execution.parallel.config.strategy'] = "fixed"
+        systemProperties['junit.jupiter.execution.parallel.config.fixed.parallelism'] = 5
+    }
+}
